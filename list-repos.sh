@@ -61,9 +61,7 @@ init_script
 parse_params "$@"
 get_creds
 
-echo ""
-echo "Repositories available at ${ACR_NAME}.azurecr.io:"
-echo ""
+echo -e "\nRepositories available at ${ACR_NAME}.azurecr.io:\n"
 
 az acr repository list \
 	-n ${ACR_NAME} \

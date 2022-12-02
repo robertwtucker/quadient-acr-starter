@@ -77,9 +77,7 @@ init_script
 parse_params "$@"
 get_creds
 
-echo ""
-echo "Image: ${ACR_NAME}.azurecr.io/${REPO}/${PRODUCT}"
-echo ""
+echo -e "\nImage: ${ACR_NAME}.azurecr.io/${REPO}/${PRODUCT}\n"
 
 az acr repository show-tags \
 	-n ${ACR_NAME} \
