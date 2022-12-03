@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
-
+#
+# Copyright (c) 2022 Quadient Group AG
+#
+# This file is subject to the terms and conditions defined in the
+# 'LICENSE' file found in the root of this source code package.
+#
 set -euo pipefail
 
+# -- Script initialization and setup
 init_script() {
   # Useful variables
   readonly orig_cwd="$PWD"
@@ -18,7 +24,8 @@ init_script() {
   LIMIT="10"
 }
 
-usage() {
+# -- Displays script usage information
+show_usage() {
   cat <<EOF
 Usage: $script_name [options] [product:=icm]
 
@@ -30,6 +37,7 @@ Options:
 EOF
 }
 
+# -- Parses scrirpt arguments
 parse_params() {
   local param
   while [[ $# -gt 0 ]]; do
@@ -37,7 +45,7 @@ parse_params() {
     shift
     case $param in
       -h | --help)
-        usage
+        show_usage
         exit 0
         ;;
       -d | --debug)
@@ -63,6 +71,7 @@ parse_params() {
   done
 }
 
+# -- Sources environment variables for ACR credentials (ACR_USERNAME, ACR_PASSWORD)
 get_creds() {
   creds_file="${script_dir}/acr-creds.env"
   if [ -s "${creds_file}" ]; then
@@ -73,6 +82,7 @@ get_creds() {
   fi
 }
 
+# -- Main script processing
 init_script
 parse_params "$@"
 get_creds
