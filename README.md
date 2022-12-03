@@ -34,12 +34,8 @@ All of the scripts provided will display usage information if the the `-h` or `-
 To see the complete list of repositories hosted in Quadient's ACR, run the `list-repos.sh` script:
 
 ``` bash
-./list-repos.sh
-```
+$ ./list-repos.sh
 
-Output similar to that in the section below will be shown.
-
-``` console
 Repositories available at quadientdistribution.azurecr.io:
 
 Result
@@ -56,12 +52,8 @@ flex/scenario-engine
 To display the tags available for a particular product (Inspire Scaler, in this example), run the `show-tags.sh` script:
 
 ``` bash
-./show-tags.sh --limit 5 scaler
-```
+$ ./show-tags.sh --limit 5 scaler
 
-Output similar to that in the section below will be shown.
-
-``` console
 Image: quadientdistribution.azurecr.io/flex/scaler
 
 Tags
@@ -80,12 +72,8 @@ The products valid for the current version of the `show-tags.sh` script are: `ic
 To see tags that contain a particular string, use the `filter-tags.sh` script:
 
 ``` bash
-./filter-tags.sh interactive 15.5
-```
+$ ./filter-tags.sh interactive 15.5
 
-Output similar to that in the section below will be shown.
-
-``` console
 Image: quadientdistribution.azurecr.io/flex/interactive:15.5
 
 Tags
