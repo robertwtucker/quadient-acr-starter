@@ -9,7 +9,7 @@ This repository provides a set of starter scripts for working with the select se
 * Azure CLI 2.42.0+
 * Quadient-issued ACR credentials
 
-The scripts in this repository leverage the functionality provided by the Azure Command-line Interface (CLI) tools and have been tested with version 2.42.0. Newer versions are expected to work without issue.
+The scripts in this repository leverage the functionality provided by the [Azure Command-line Interface](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) (CLI) tools and have been tested with version 2.42.0. Newer versions are expected to work without issue.
 
 A unique set of credentials for the Quadient ACR service is also required. Credentials can be requested via [Quadient University](https://university.quadient.com/group/site/product-installers?p_p_id=com_quadient_university_installers_display_portlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_quadient_university_installers_display_portlet_cur2=1&_com_quadient_university_installers_display_portlet_delta2=20&_com_quadient_university_installers_display_portlet_orderByCol=created-date&_com_quadient_university_installers_display_portlet_orderByType=desc&_com_quadient_university_installers_display_portlet_navigationBar=container-registry).
 
