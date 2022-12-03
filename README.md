@@ -25,13 +25,13 @@ The command above clones the repository into a directory named `acr` instead of 
 
 Switch to the `acr` directory that was created and edit the `acr-creds-template.env` file. Add your unique credentials to the `ACR_USERNAME=` and `ACR_PASSWORD=` lines, respectively, and **save the file as** `acr-creds.env` in the `acr` directory.
 
-### Usage
+## Usage
 
-All of the scripts provided will display usage information if the the `-h` or `--help` option is used. A few usage examples are included below.
+All of the scripts provided will display usage information if the the `-h` or `--help` options are used. A few usage examples are included below.
 
-#### Listing the repositories
+### Listing the repositories
 
-To see the complete list of repositories hosted in Quadient's ACR, run the following command:
+To see the complete list of repositories hosted in Quadient's ACR, run the `list-repos.sh` script:
 
 ``` bash
 ./list-repos.sh
@@ -50,6 +50,53 @@ flex/ips
 flex/scaler
 flex/scenario-engine
 ```
+
+### Displaying the tags for a product repository
+
+To display the tags available for a particular product (Inspire Scaler, in this example), run the `show-tags.sh` script:
+
+``` bash
+./show-tags.sh --limit 5 scaler
+```
+
+Output similar to that in the section below will be shown.
+
+``` console
+Image: quadientdistribution.azurecr.io/flex/scaler
+
+Tags
+-------------
+15.5-latest
+15.5.414.0-HF
+15.0-latest
+15.0.731.0-HF
+15.4-latest
+```
+
+The products valid for the current version of the `show-tags.sh` script are: `icm` (default), `interactive`, `ips`, `scaler` and `scenario-engine`. In the example above, the `--limit` option is used to restrict the output to the 5 most recently published tags. If no limit is specified, the 10 most recent tags are listed by default.
+
+### Filtering the tags shown for a product
+
+To see tags that contain a particular string, use the `filter-tags.sh` script:
+
+``` bash
+./filter-tags.sh interactive 15.5
+```
+
+Output similar to that in the section below will be shown.
+
+``` console
+Image: quadientdistribution.azurecr.io/flex/interactive:15.5
+
+Tags
+-------------
+15.5-latest
+15.5.408.0-HF
+15.5.407.0-HF
+15.5.406.0-HF
+```
+
+The products valid for the current version of the `filter-tags.sh` script are: `icm` (default), `interactive`, `ips`, `scaler` and `scenario-engine`. If no version string is provided, `15.0` is used as the default. As with the `show-tags.sh` script, the output is limited to the 10 most recently published tags by default.
 
 ## Roadmap
 
