@@ -10,8 +10,6 @@ set -euo pipefail
 # -- Script initialization and setup
 init_script() {
   # Useful variables
-  readonly orig_cwd="$PWD"
-  readonly script_params="$*"
   readonly script_path="${BASH_SOURCE[0]}"
   script_dir="$(dirname "$script_path")"
   script_name="$(basename "$script_path")"
@@ -28,6 +26,7 @@ init_script() {
 # -- Displays script usage information
 show_usage() {
   cat <<EOF
+
 Usage: $script_name [options] [product:=icm] [version:=15.0]
 
 Options:
@@ -84,6 +83,7 @@ parse_params() {
 get_creds() {
   creds_file="${script_dir}/acr-creds.env"
   if [ -s "${creds_file}" ]; then
+    # shellcheck source=acr-creds.env
     source "${creds_file}"
   else
     echo "Credentials file is empty or does not exist"
@@ -92,19 +92,19 @@ get_creds() {
 }
 
 # -- Main script processing
-init_script
+init_script "$@"
 parse_params "$@"
 get_creds
 
 echo -e "\nImage: ${ACR_NAME}.azurecr.io/${REPO}/${PRODUCT}:${VERSION}\n"
 
 az acr repository show-tags \
-	-n ${ACR_NAME} \
-	-u ${ACR_USERNAME} \
-	-p ${ACR_PASSWORD} \
-	--repository ${REPO}/${PRODUCT} \
+	-n "${ACR_NAME}" \
+	-u "${ACR_USERNAME}" \
+	-p "${ACR_PASSWORD}" \
+	--repository "${REPO}/${PRODUCT}" \
 	--detail \
 	--orderby time_desc \
 	--query "[?contains(name,'${VERSION}')].{tags:name}" \
-	--top ${LIMIT} \
+	--top "${LIMIT}" \
 	-o table
