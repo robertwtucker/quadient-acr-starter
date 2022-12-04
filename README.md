@@ -1,6 +1,6 @@
 # Quadient ACR Starter Scripts
 
-This repository provides a set of starter scripts for working with the select set of Quadient-built container images hosted in the Azure Container Registry (ACR) service.
+This repository provides a set of starter scripts for working with the select set of [Quadient](https://www.quadient.com/en/customer-communications/inspire-flex)-built container images hosted in the Azure Container Registry (ACR) service.
 
 ## Getting Started
 
@@ -85,6 +85,20 @@ Tags
 ```
 
 The products valid for the current version of the `filter-tags.sh` script are: `icm` (default), `interactive`, `ips`, `scaler` and `scenario-engine`. If no version string is provided, `15.0` is used as the default. As with the `show-tags.sh` script, the output is limited to the 10 most recently published tags by default.
+
+### Logging into the ACR with Docker/Podman
+
+In order to pull images from the Quadient ACR, you must first authenticate using your preferred [Open Container Initiative](https://opencontainers.org) (OCI) command-line tool. The `acr-login` script simplifies this process by supplying the credentials for the `docker` | `podman login` command, as appropriate.
+
+``` bash
+$ ./acr-login.sh --podman
+
+Logging into quadientdistribution.azurecr.io with podman...
+
+Login Succeeded! 
+```
+
+The example above uses the `--podman` option to specify that the [Podman](https://podman.io) client should be used. If no option is provided, the script defaults to using [Docker](https://www.docker.com) (`--docker`).
 
 ## Roadmap
 
