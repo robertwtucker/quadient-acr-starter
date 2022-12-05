@@ -25,7 +25,7 @@ init_script() {
 
 # -- Displays script usage information
 show_usage() {
-  cat <<EOF
+  cat << EOF
 
 Usage: $script_name [options] [product:=icm] [tag:=15.0-latest]
 
@@ -54,11 +54,11 @@ parse_params() {
         set -x
         ;;
       --docker)
-      OCI_CLIENT="docker"
-      ;;
+        OCI_CLIENT="docker"
+        ;;
       --podman)
-      OCI_CLIENT="podman"
-      ;;
+        OCI_CLIENT="podman"
+        ;;
       --registry)
         if [ $# -ge 1 ]; then
           REGISTRY="$1"
@@ -128,4 +128,3 @@ if [ -n "${REGISTRY:-}" ]; then
     ${OCI_CLIENT} push "${new_image}"
   fi
 fi
-
