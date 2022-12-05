@@ -127,6 +127,7 @@ The push refers to repository [registry.example.com/flex/scaler]
 15.5.414.0-HF: digest: sha256:a9cca6c559ee95df20f2902a287d978040afcb4fc866c08ef4b61e2df40481f4
 ```
 
+<!--markdownlint-disable-next-line -->
 In the preceeding example, the script starts by leveraging the [`acr-login.sh` script](#logging-into-the-acr-with-dockerpodman) to authenticate with the Quadient ACR. The `--registry` option provides the name of an OCI-compliant registry that will replace the one on the image provided by the Quadient ACR (`quadientdistribution.azurecr.io`). This is used in conjunction with the `--push` option to automatically upload the image to the newly-specified registry.
 
 The products valid for the current version of the `get-image.sh` script are: `icm` (default), `interactive`, `ips`, `scaler` and `scenario-engine`. If no image tag is provided, `15.0-latest` is used as the default. As with the [`acr-login.sh` script](#logging-into-the-acr-with-dockerpodman), the Docker client (`--docker`) is specified by default.
