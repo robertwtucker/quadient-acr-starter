@@ -84,21 +84,53 @@ Tags
 15.5.406.0-HF
 ```
 
-The products valid for the current version of the `filter-tags.sh` script are: `icm` (default), `interactive`, `ips`, `scaler` and `scenario-engine`. If no version string is provided, `15.0` is used as the default. As with the `show-tags.sh` script, the output is limited to the 10 most recently published tags by default.
+The products valid for the current version of the `filter-tags.sh` script are: `icm` (default), `interactive`, `ips`, `scaler` and `scenario-engine`. If no version string is provided, `15.0` is used as the default. As with the [`show-tags.sh` script](#displaying-the-tags-for-a-product-repository), the output is limited to the 10 most recently published tags by default.
 
 ### Logging into the ACR with Docker/Podman
 
-In order to pull images from the Quadient ACR, you must first authenticate using your preferred [Open Container Initiative](https://opencontainers.org) (OCI) command-line tool. The `acr-login` script simplifies this process by supplying the credentials for the `docker` | `podman login` command, as appropriate.
+In order to pull images from the Quadient ACR, you must first authenticate using your preferred [Open Container Initiative](https://opencontainers.org) (OCI) command-line tool. The `acr-login.sh` script simplifies this process by supplying the credentials for the `docker` and `podman login` commands, respectively.
 
 ``` bash
 $ ./acr-login.sh --podman
 
-Logging into quadientdistribution.azurecr.io with podman...
+Logging into quadientdistribution.azurecr.io with Podman...
 
 Login Succeeded! 
 ```
 
 The example above uses the `--podman` option to specify that the [Podman](https://podman.io) client should be used. If no option is provided, the script defaults to using [Docker](https://www.docker.com) (`--docker`).
+
+### Downloading images from the Quadient ACR
+
+Once an image has been identified for testing, best practice is to pull the image locally before pushing it to a internally-managed repository. While not mandatory, this is highly recommended for quarantine and/or manageability purposes. The `get-image.sh` script was created to support such a scenario.
+
+>_NOTE_: Quadient R&D recommends that images from the Quadient ACR only be pulled directly into Kubernetes clusters for proofs-of-concept (i.e. as referenced by the default configuration of the Inspire Helm charts).
+
+``` bash
+$ ./get-image.sh --push --registry registry.example.com scaler 15.5.414.0-HF
+
+Logging into quadientdistribution.azurecr.io with Docker...
+Login Succeeded
+
+Pulling image: quadientdistribution.azurecr.io/flex/scaler:15.5.414.0-HF
+15.5.414.0-HF: Pulling from flex/scaler
+Digest: sha256:a9cca6c559ee95df20f2902a287d978040afcb4fc866c08ef4b61e2df40481f4
+Status: Downloaded newer image for quadientdistribution.azurecr.io/flex/scaler:15.5.414.0-HF
+
+Tagging image as: registry.example.com/flex/scaler:15.5.414.0-HF
+Removing tag: quadientdistribution.azurecr.io
+Untagged: quadientdistribution.azurecr.io/flex/scaler:15.5.414.0-HF
+Untagged: quadientdistribution.azurecr.io/flex/scaler@sha256:a9cca6c559ee95df20f2902a287d978040afcb4fc866c08ef4b61e2df40481f4
+
+Pushing image: registry.example.com/flex/scaler:15.5.414.0-HF
+The push refers to repository [registry.example.com/flex/scaler]
+15.5.414.0-HF: digest: sha256:a9cca6c559ee95df20f2902a287d978040afcb4fc866c08ef4b61e2df40481f4
+```
+
+<!--markdownlint-disable-next-line -->
+In the preceeding example, the script starts by leveraging the [`acr-login.sh` script](#logging-into-the-acr-with-dockerpodman) to authenticate with the Quadient ACR. The `--registry` option provides the name of an OCI-compliant registry that will replace the one on the image provided by the Quadient ACR (`quadientdistribution.azurecr.io`). This is used in conjunction with the `--push` option to automatically upload the image to the newly-specified registry.
+
+The products valid for the current version of the `get-image.sh` script are: `icm` (default), `interactive`, `ips`, `scaler` and `scenario-engine`. If no image tag is provided, `15.0-latest` is used as the default. As with the [`acr-login.sh` script](#logging-into-the-acr-with-dockerpodman), the Docker client (`--docker`) is specified by default.
 
 ## Roadmap
 
