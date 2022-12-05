@@ -21,7 +21,7 @@ init_script() {
 
 # -- Displays script usage information
 show_usage() {
-  cat <<EOF
+  cat << EOF
 
 Usage: $script_name [options]
 
@@ -32,7 +32,7 @@ Options:
 EOF
 }
 
-# -- Parses scrirpt arguments
+# -- Parses script arguments
 parse_params() {
   local param
   while [[ $# -gt 0 ]]; do
@@ -54,7 +54,8 @@ parse_params() {
   done
 }
 
-# -- Sources environment variables for ACR credentials (ACR_USERNAME, ACR_PASSWORD)
+# -- Sources environment variables for ACR credentials
+# -- (ACR_USERNAME, ACR_PASSWORD)
 get_creds() {
   creds_file="${script_dir}/acr-creds.env"
   if [ -s "${creds_file}" ]; then
@@ -74,7 +75,7 @@ get_creds
 echo -e "\nRepositories available at ${ACR_NAME}.azurecr.io:\n"
 
 az acr repository list \
-	-n "${ACR_NAME}" \
-	-u "${ACR_USERNAME}" \
-	-p "${ACR_PASSWORD}" \
-	-o table
+  -n "${ACR_NAME}" \
+  -u "${ACR_USERNAME}" \
+  -p "${ACR_PASSWORD}" \
+  -o table
