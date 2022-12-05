@@ -22,7 +22,7 @@ init_script() {
 
 # -- Displays script usage information
 show_usage() {
-  cat <<EOF
+  cat << EOF
 
 Usage: $script_name [options]
 
@@ -49,11 +49,11 @@ parse_params() {
         set -x
         ;;
       --docker)
-      OCI_CLIENT="docker"
-      ;;
+        OCI_CLIENT="docker"
+        ;;
       --podman)
-      OCI_CLIENT="podman"
-      ;;
+        OCI_CLIENT="podman"
+        ;;
       *)
         echo "Invalid parameter was provided: $param"
         exit 1
@@ -62,7 +62,8 @@ parse_params() {
   done
 }
 
-# -- Sources environment variables for ACR credentials (ACR_USERNAME, ACR_PASSWORD)
+# -- Sources environment variables for ACR credentials
+# -- (ACR_USERNAME, ACR_PASSWORD)
 get_creds() {
   creds_file="${script_dir}/acr-creds.env"
   if [ -s "${creds_file}" ]; then
@@ -80,5 +81,7 @@ parse_params "$@"
 get_creds
 
 echo -e "\nLogging into ${ACR_NAME}.azurecr.io with ${OCI_CLIENT}...\n"
-
-echo "${ACR_PASSWORD}" | ${OCI_CLIENT} login --username "${ACR_USERNAME}" --password-stdin "${ACR_NAME}.azurecr.io"
+echo "${ACR_PASSWORD}" | ${OCI_CLIENT} login \
+  --username "${ACR_USERNAME}" \
+  --password-stdin \
+  "${ACR_NAME}.azurecr.io"
