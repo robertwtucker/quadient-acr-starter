@@ -36,7 +36,7 @@ Options:
 EOF
 }
 
-# -- Parses scrirpt arguments
+# -- Parses script arguments
 parse_params() {
   local param
   while [[ $# -gt 0 ]]; do
