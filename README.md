@@ -8,8 +8,8 @@ of [Quadient](https://www.quadient.com/en/customer-communications/inspire-flex)
 
 ### Prerequisites
 
-* Azure CLI 2.42.0+
-* Quadient-issued ACR credentials
+- Azure CLI 2.42.0+
+- Quadient-issued ACR credentials
 
 The scripts in this repository leverage the functionality provided by the
 [Azure Command-line Interface](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
@@ -24,7 +24,7 @@ Credentials can be requested via
 
 To begin, clone the repository:
 
-``` bash
+```bash
 git clone https://github.com/robertwtucker/quadient-acr-starter.git acr
 ```
 
@@ -46,7 +46,7 @@ All of the scripts provided will display usage information if the the `-h` or
 To see the complete list of repositories hosted in Quadient's ACR, run the
 `list-repos.sh` script:
 
-``` bash
+```bash
 $ ./list-repos.sh
 
 Repositories available at quadientdistribution.azurecr.io:
@@ -65,7 +65,7 @@ flex/scenario-engine
 To display the tags available for a particular product (Inspire Scaler, in this
 example), run the `show-tags.sh` script:
 
-``` bash
+```bash
 $ ./show-tags.sh --limit 8 scaler
 
 Image: quadientdistribution.azurecr.io/flex/scaler
@@ -83,16 +83,16 @@ Tags
 ```
 
 The products valid for the current version of the `show-tags.sh` script are:
-`icm` (default), `interactive`, `ips`, `scaler` and `scenario-engine`. In the
-example above, the `--limit` option is used to restrict the output to the 8 most
-recently published tags. If no limit is specified, the 10 most recent tags are
-listed by default.
+`icm` (default), `interactive`, `ips`, `scaler`, `scenario-engine` and `automation`.
+In the example above, the `--limit` option is used to restrict the output to the
+8 most recently published tags. If no limit is specified, the 10 most recent
+tags are listed by default.
 
 ### Filtering the tags shown for a product
 
 To see tags that contain a particular string, use the `filter-tags.sh` script:
 
-``` bash
+```bash
 $ ./filter-tags.sh icm 16.0
 
 Image: quadientdistribution.azurecr.io/flex/icm:16.0
@@ -105,8 +105,8 @@ Tags
 ```
 
 The products valid for the current version of the `filter-tags.sh` script are:
-`icm` (default), `interactive`, `ips`, `scaler` and `scenario-engine`. If no
-version string is provided, `16.0` is used as the default. As with the
+`icm` (default), `interactive`, `ips`, `scaler`, `scenario-engine` and `automation`.
+If no version string is provided, `16.0` is used as the default. As with the
 [`show-tags.sh` script](#displaying-the-tags-for-a-product-repository), the
 output is limited to the 10 most recently published tags by default.
 
@@ -118,12 +118,12 @@ command-line tool. The `acr-login.sh` script simplifies this process by
 supplying the credentials for the `docker` and `podman login` commands,
 respectively.
 
-``` bash
+```bash
 $ ./acr-login.sh --podman
 
 Logging into quadientdistribution.azurecr.io with Podman...
 
-Login Succeeded! 
+Login Succeeded!
 ```
 
 The example above uses the `--podman` option to specify that the
@@ -137,11 +137,11 @@ image locally before pushing it to a internally-managed repository. While not
 mandatory, this is highly recommended for quarantine and/or manageability
 purposes. The `get-image.sh` script was created to support such a scenario.
 
->_NOTE_: Quadient R&D recommends that images from the Quadient ACR only be
-pulled directly into Kubernetes clusters for proofs-of-concept (i.e. as
-referenced by the default configuration of the Inspire Helm charts).
+> _NOTE_: Quadient R&D recommends that images from the Quadient ACR only be
+> pulled directly into Kubernetes clusters for proofs-of-concept (i.e. as
+> referenced by the default configuration of the Inspire Helm charts).
 
-``` bash
+```bash
 $ ./get-image.sh --push --registry registry.example.com scaler 15.5.414.0-HF
 
 Logging into quadientdistribution.azurecr.io with Docker...
@@ -171,8 +171,8 @@ with the `--push` option to automatically upload the image to the
 newly-specified registry.
 
 The products valid for the current version of the `get-image.sh` script are:
-`icm` (default), `interactive`, `ips`, `scaler` and `scenario-engine`. If no
-image tag is provided, `16.0-latest` is used as the default. As with the
+`icm` (default), `interactive`, `ips`, `scaler`, `scenario-engine` and `automation`.
+If no image tag is provided, `16.0-latest` is used as the default. As with the
 [`acr-login.sh` script](#logging-into-the-acr-with-dockerpodman), the Docker
 client (`--docker`) is specified by default.
 
