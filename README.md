@@ -8,8 +8,8 @@ of [Quadient](https://www.quadient.com/en/customer-communications/inspire-flex)
 
 ### Prerequisites
 
--   Azure CLI 2.42.0+
--   Quadient-issued ACR credentials
+- Azure CLI 2.42.0+
+- Quadient-issued ACR credentials
 
 The scripts in this repository leverage the functionality provided by the
 [Azure Command-line Interface](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
