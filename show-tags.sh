@@ -59,7 +59,7 @@ parse_params() {
           exit 1
         fi
         ;;
-      icm | ips | interactive | scaler | scenario-engine)
+      icm | ips | interactive | scaler | scenario-engine | automation)
         PRODUCT=$param
         ;;
       *)

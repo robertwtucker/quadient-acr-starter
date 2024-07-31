@@ -64,7 +64,7 @@ parse_params() {
         echo "Invalid parameter was provided: $param"
         exit 1
         ;;
-      icm | ips | interactive | scaler | scenario-engine)
+      icm | ips | interactive | scaler | scenario-engine | automation)
         PRODUCT=$param
         if [ $# -gt 0 ]; then
           VERSION=$1
