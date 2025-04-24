@@ -19,7 +19,7 @@ init_script() {
   ACR_NAME="quadientdistribution"
   REPO="flex"
   PRODUCT="icm"
-  VERSION="16.0"
+  VERSION="17.0"
   LIMIT="10"
 }
 
@@ -27,7 +27,7 @@ init_script() {
 show_usage() {
   cat << EOF
 
-Usage: $script_name [options] [product:=icm] [version:=16.0]
+Usage: $script_name [options] [product:=icm] [version:=17.0]
 
 Options:
   -h, --help           show this help
