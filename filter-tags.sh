@@ -84,7 +84,7 @@ parse_params() {
 get_creds() {
   creds_file="${script_dir}/acr-creds.env"
   if [ -s "${creds_file}" ]; then
-    # shellcheck source=acr-creds.env
+    # shellcheck source=acr-creds-template.env
     source "${creds_file}"
   else
     echo "Credentials file is empty or does not exist"

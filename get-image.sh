@@ -107,7 +107,7 @@ if [ "${OCI_CLIENT}" == "podman" ]; then
   LOGIN_OPTS="--podman"
 fi
 # "$script_dir/acr-login.sh" ${LOGIN_OPTS:---docker} > /dev/null 2>&1
-"$script_dir/acr-login.sh" ${LOGIN_OPTS:---docker}
+"$script_dir/acr-login.sh" "${LOGIN_OPTS:---docker}"
 
 # Pull image
 readonly quadient_image="${ACR_NAME}.azurecr.io/${REPO}/${PRODUCT}:${TAG}"
