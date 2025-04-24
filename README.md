@@ -53,6 +53,7 @@ Repositories available at quadientdistribution.azurecr.io:
 
 Result
 --------------------
+flex/automation
 flex/icm
 flex/interactive
 flex/ips
@@ -72,14 +73,20 @@ Image: quadientdistribution.azurecr.io/flex/scaler
 
 Tags
 -------------
-16.0-latest
-16.0.411.0-FMAP
-15.5-latest
-15.5.424.0-HF
-15.5.423.0-HF
-15.5.421.0-HF
+./show-tags.sh --limit 8 scaler
+
+Image: quadientdistribution.azurecr.io/flex/scaler
+
+Tags
+-------------
 15.0-latest
-15.0.736.0-SP
+15.0.774.0-HF
+17.0-latest
+17.0.409.0-HF
+16.0-latest
+16.0.652.0-SP
+16.0.651.0-HF
+16.0.650.0-HF
 ```
 
 The products valid for the current version of the `show-tags.sh` script are:
@@ -100,13 +107,15 @@ Image: quadientdistribution.azurecr.io/flex/icm:16.0
 Tags
 -------------
 16.0-latest
-16.0.422.0-HF
-16.0.420.0-FMAP
+16.0.755.0-HF
+16.0.754.0-HF
+16.0.753.0-HF
+16.0.752.0-SP
 ```
 
 The products valid for the current version of the `filter-tags.sh` script are:
 `icm` (default), `interactive`, `ips`, `scaler`, `scenario-engine` and `automation`.
-If no version string is provided, `16.0` is used as the default. As with the
+If no version string is provided, `17.0` is used as the default. As with the
 [`show-tags.sh` script](#displaying-the-tags-for-a-product-repository), the
 output is limited to the 10 most recently published tags by default.
 
@@ -172,7 +181,7 @@ newly-specified registry.
 
 The products valid for the current version of the `get-image.sh` script are:
 `icm` (default), `interactive`, `ips`, `scaler`, `scenario-engine` and `automation`.
-If no image tag is provided, `16.0-latest` is used as the default. As with the
+If no image tag is provided, `17.0-latest` is used as the default. As with the
 [`acr-login.sh` script](#logging-into-the-acr-with-dockerpodman), the Docker
 client (`--docker`) is specified by default.
 

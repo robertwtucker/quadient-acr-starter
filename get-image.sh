@@ -20,14 +20,14 @@ init_script() {
   OCI_CLIENT="docker"
   REPO="flex"
   PRODUCT="icm"
-  TAG="16.0-latest"
+  TAG="17.0-latest"
 }
 
 # -- Displays script usage information
 show_usage() {
   cat << EOF
 
-Usage: $script_name [options] [product:=icm] [tag:=16.0-latest]
+Usage: $script_name [options] [product:=icm] [tag:=17.0-latest]
 
 Options:
   -h, --help           show this help
