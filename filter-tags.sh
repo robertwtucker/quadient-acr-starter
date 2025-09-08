@@ -11,8 +11,8 @@ set -euo pipefail
 init_script() {
   # Useful variables
   readonly script_path="${BASH_SOURCE[0]}"
-  script_dir="$(dirname "$script_path")"
-  script_name="$(basename "$script_path")"
+  script_dir="$(dirname "$(readlink -f "$script_path")")"
+  script_name="$(basename "$(readlink -f "$script_path")")"
   readonly script_dir script_name
 
   # Script variables
